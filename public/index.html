@@ -1,0 +1,117 @@
+<html lang="en" ng-app="DashboardApp">
+<head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Weavver Moksha - Dashboard</title>
+     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+     <script src="/js/gauge.js"></script>
+     <script>
+          var gauges = [];
+          function createGauge(name, label, min, max) {
+               var config =
+               {
+                    size: 130,
+                    label: label,
+                    min: undefined != min ? min : 0,
+                    max: undefined != max ? max : 100,
+                    minorTicks: 5
+               }
+               var range = config.max - config.min;
+               config.yellowZones = [{ from: config.min + range * 0.75, to: config.min + range * 0.9 }];
+               config.redZones = [{ from: config.min + range * 0.9, to: config.max }];
+               gauges[name] = new Gauge(name, config);
+               gauges[name].render();
+          }
+
+          function createGauges() {
+               createGauge("passing", "Passing", 0, 100);
+               createGauge("failing", "Failing", 0, 60);
+          }
+
+          function getRandomValue(gauge) {
+               var overflow = 0; //10;
+               return gauge.config.min - overflow + (gauge.config.max - gauge.config.min + overflow * 2) * Math.random();
+          }
+
+          function initialize() {
+               createGauges();
+          }
+
+     </script>
+
+     <style type="text/css">
+         * {
+             font-size: 14px;
+             line-height: 1.428;
+         }
+
+          body {
+               background-color: #363636;
+               margin: 0px;
+               padding: 0px;
+          }
+
+          .col-md-2 {
+               text-align: center;
+               min-width: 180px;
+          }
+
+          .table {
+               background-color: #FFFFFF;
+          }
+     </style>
+</head>
+<body ng-controller="Moksha" onload="initialize()">
+    <div class="wrapper container">
+          <!--<div class="row">-->
+               <!--<div class="col-md-3"><span id="passing"></span></div>-->
+               <!--<div class="col-md-3"><span id="failing"></span></div>-->
+          <!--</div>-->
+    </div>
+    <table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Interval</th>
+        <th>Description</th>
+        <th style="text-align: center;">Last Run</th>
+        <th style="text-align: center;">Run Duration</th>
+        <th style="text-align: center;">Last Fail</th>
+        <th>Log</th>
+    </tr>
+    </thead>
+    <tbody ng-repeat="unitSet in data | orderBy: 'name'">
+    <tr>
+        <td colspan="7" style="background-color: #8dbdff; font-weight: bold;">
+            {{unitSet.name}}
+        </td>
+    </tr>
+    <tr ng-repeat="obj in unitSet.items | orderBy: ['status', 'name']" style="background-color: {{ obj.color }};">
+        <td style="max-width: 140px; border: 1px solid white; text-overflow: ellipsis; overflow: hidden;">
+            <span style="text-decoration: underline;">{{data.name}}{{ obj.name }}</span><br />
+            <span style="font-size: smaller" ng-if="obj.tags">[{{ obj.tags }}]</span>
+        </td>
+        <td style="text-align: center;">{{ obj.interval }}</td>
+        <td>{{ obj.description }}</td>
+        <td title="{{ obj.lastRun }}" style="text-align: center;">
+            {{ obj.lastRunString }}
+        </td>
+        <td style="text-align: center; background-color: {{ obj.isRunningColor }};">
+            {{ obj.lastRunDurationString }}
+        </td>
+        <td style="text-align: center;" title="{{ obj.lastFail }}">{{ obj.lastFailString }} (total: {{ obj.fails }})
+        </td>
+        <td style="max-width: 300px; text-overflow: ellipsis; overflow:hidden;" title="{{ obj.log }}">
+            {{obj.logShortString}}
+        </td>
+     </tr>
+     </tbody>
+     </table>
+     <script src="/bower_components/angular/angular.js"></script>
+     <script src="/js/controllers.js"></script>
+</body>
+</html>

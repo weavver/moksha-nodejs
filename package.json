@@ -1,0 +1,32 @@
+{
+  "name": "weavver-moksha",
+  "version": "1.0.9",
+  "description": "a software management tool for monitoring, testing, and deploying",
+  "main": "app.js",
+  "dependencies": {
+    "async": "^1.4.2",
+    "cron": "^1.0.9",
+    "express": "^4.13.3",
+    "jsdom": "^7.0.1",
+    "mssql": "^2.3.1",
+    "needle": "^0.10.0",
+    "node-stopwatch": "0.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/weavver/moksha/nodejs"
+  },
+  "keywords": [
+    "software",
+    "lifecycle",
+    "selenium",
+    "unit",
+    "testing"
+  ],
+  "author": "Mitchel Constantin",
+  "license": "MIT"
+}
