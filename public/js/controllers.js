@@ -6,7 +6,7 @@ DashboardApp.controller('Moksha', function ($scope, $http, $interval) {
      $scope.data = {};
 
      $scope.updateData = function () {
-        $http.get('/data').then(function (response) {
+        $http.get('data').then(function (response) {
             // console.log(response);
 
             $scope.data = response.data;
