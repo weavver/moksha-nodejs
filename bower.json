@@ -1,0 +1,26 @@
+{
+  "name": "weavver-moksha",
+  "description": "a software management tool for monitoring, testing, and deploying",
+  "main": "app.js",
+  "authors": [
+    "Mitchel Constantin"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "software",
+    "lifecycle",
+    "selenium",
+    "unit",
+    "testing"
+  ],
+  "homepage": "https://github.com/weavver/moksha-nodejs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "angular": "^1.6.3"
+  }
+}

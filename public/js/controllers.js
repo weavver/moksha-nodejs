@@ -1,4 +1,4 @@
-﻿
+
 
 var DashboardApp = angular.module('DashboardApp', []);
 
@@ -98,6 +98,6 @@ DashboardApp.controller('Moksha', function ($scope, $http, $interval) {
           if (interval > 1) {
                return interval + " minutes";
           }
-          return seconds + " seconds";
+          return seconds + " sec ";
      }
 });
