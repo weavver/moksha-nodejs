@@ -3,7 +3,7 @@
 Weavver Moksha for NodeJS is a unit testing harness that runs tests constantly on the server while providing a nice
 web front end to view the test status via express and angularjs
 
-Check out the demo here: https://demo.weavver.com/moksha-nodejs/
+Check out the demo here: https://demo.weavver.com/moksha/
 
 To load the harness into your project do:
 ```

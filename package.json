@@ -1,6 +1,6 @@
 {
   "name": "weavver-moksha",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "a software management tool for monitoring, testing, and deploying",
   "main": "app.js",
   "dependencies": {

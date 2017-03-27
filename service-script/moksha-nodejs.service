@@ -1,0 +1,20 @@
+[Unit]
+Description=moksha-nodejs
+
+[Service]
+ExecStart=/opt/bitnami/nodejs/bin/node /home/bitnami/moksha-nodejs/tests/test.js
+Restart=always
+User=bitnami
+Environment=PATH=/usr/bin:/usr/local/bin:/opt/bitnami/nodejs/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/bitnami/moksha-nodejs
+
+[Install]
+WantedBy=multi-user.target
+
+# sudo cp service-script/moksha-nodejs.service /etc/systemd/system
+# sudo systemctl daemon-reload
+# sudo systemctl enable moksha-nodejs.service
+# sudo systemctl start moksha-nodejs.service
+# sudo systemctl status moksha-nodejs.service
+# sudo journalctl --follow -u moksha-nodejs
